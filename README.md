@@ -43,3 +43,5 @@ TODO:
 - more puzzles please!
 - perhaps balls of different sizes
 - make the boundary not axis-aligned
+- implement restitution for inelastic balls.
+- perhaps sticky balls. will probability need to implement a more general handling of constraint resolution first. heavy work
