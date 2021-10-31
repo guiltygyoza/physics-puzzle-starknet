@@ -2,7 +2,10 @@
 %builtins pedersen range_check
 
 from starkware.cairo.common.cairo_builtins import HashBuiltin
-from starkware.cairo.common.math import (assert_not_zero)
+from starkware.cairo.common.math import (assert_not_zero, assert_le)
+
+# TODO where's a better place to put this constant!
+const SCALE_FP = 100*100
 
 struct BallState:
     member x : felt
@@ -171,6 +174,12 @@ func MakeMove {
         bool_finished : felt
     ):
     alloc_locals
+
+    # check if player-chosen velocity values are within legal range
+    assert_le(ball_player_vx, 250 *SCALE_FP)
+    assert_le(ball_player_vy, 250 *SCALE_FP)
+    assert_le(-250 *SCALE_FP, ball_player_vx)
+    assert_le(-250 *SCALE_FP, ball_player_vy)
 
     # read puzzle and assemble system_state_init
     let (local puzzle : Puzzle) = CurrentPuzzle.read()
