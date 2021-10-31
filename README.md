@@ -20,7 +20,7 @@
 - **Server** contract
   - manages the entire simulation and scoring for one gameplay
   - calls **Chef** to advance state recursively until either stopping condition reached or maximum iteration cap reached, whichever comes first
-  - maximum iteration cap is to avoid the transaction used up available StarkNet execution resource (estimated to be 1,000,000 `n_steps`); one long simulation is broken up to multiple transactions to complete.
+  - maximum iteration cap is to avoid the transaction exhausting available StarkNet execution resource (estimated to be 1,000,000 `n_steps` per tx); one long simulation is broken up to multiple transactions to complete.
 
 - **Manager** contract
   - retrieves level from **inventory** for client to query; receives client actions and calls one **server** per client to handle simulation;
